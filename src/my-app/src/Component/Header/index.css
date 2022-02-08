@@ -1,0 +1,36 @@
+img.logo{
+    width:30px;
+    height: 30px;
+    margin-right: 8px;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.userpic{
+    display:inline-block;
+    background: darkgrey;
+    border-radius: 50%;
+}
+
+ button.header{
+width: auto;
+margin-bottom: auto;
+margin-left: 16px;
+height: 20px;
+border: none;
+outline: none;
+background:none;
+color: whitesmoke;
+}
+button.header:hover{
+    width: auto;
+    height: 25px;
+    color: wheat;
+}
+
+div.header{
+    display: inline;
+    font-size: 1.02em;
+    margin-right:0px;
+    color: cornsilk; 
+}

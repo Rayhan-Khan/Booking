@@ -1,0 +1,16 @@
+.imgcontainer{
+    height: 24vh;
+}
+
+.card-style{
+    text-decoration: none;
+    color:black;
+    border: none;
+    padding:0%;
+    border-radius: 12px;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.card-style:hover{
+    opacity: .8;
+}

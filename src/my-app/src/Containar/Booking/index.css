@@ -1,0 +1,19 @@
+.linkStyle{
+    text-decoration: none;
+    color:black;
+    border: none;
+    padding:0%;
+}
+
+.linkStyle:hover{
+    font-size: 130%;
+    
+}
+
+.color1{
+    background-color: #E8E8E8;
+}
+
+.color2{
+    background-color: #F8F8F8
+}
