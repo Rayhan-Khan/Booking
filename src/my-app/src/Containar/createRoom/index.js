@@ -1,10 +1,10 @@
-import Home from "../Home";
+
 import { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import  axios from '../../helper/axios'
 import { useSelector } from "react-redux";
-import {Alert} from 'react-bootstrap'
+
 
 const CreateRoom = (props) => {
   
@@ -31,7 +31,8 @@ const CreateRoom = (props) => {
     setShow(true);
   }, []);
 
-  async function handleSubmit(){
+  async function handleSubmit(e){
+      e.preventDefault();
      if(RoomPhoto.length===0)
      return setValidate(true);
     if (!Type || !Name||!Price|| !Room || !Location||!RoomPhoto ||!coverPhoto)
@@ -52,11 +53,9 @@ const CreateRoom = (props) => {
      const error=null;
     try{
       const res=await axios.post('createroom',form);
-      if(res.status===201)
-      <Alert  variant='successs'>
-         successfully created
-    </Alert>
-    setShow(false)
+      if(res.status===201){
+         setShow(false)
+        }
     }catch(err){
       if(err.response.status===409)
           {  setValidate(true)
@@ -83,7 +82,7 @@ const CreateRoom = (props) => {
             X
           </button>
           <h3 className="center">Create Room</h3>
-          <Form noValidate validated={isValidate}>
+          <Form  onSubmit={handleSubmit} noValidate validated={isValidate}>
             <Form.Group className="mb-3">
               <Form.Label>Type</Form.Label>
               <Form.Control
@@ -224,7 +223,7 @@ const CreateRoom = (props) => {
             <div>
               <Button
                 style={{ width: "100%", marginTop: "10px" }}
-                onClick={handleSubmit}
+                 type='submit'
               >
                 Create Room
               </Button>

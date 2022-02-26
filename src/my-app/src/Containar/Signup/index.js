@@ -1,7 +1,6 @@
-import Home from "../Home";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 import SignupAction from "../../action/signUpAction";
 const Signup = (props) => {
@@ -23,7 +22,8 @@ const Signup = (props) => {
     setShow(true);
   }, []);
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     if (!Email || !Password || !Name || !confirmPassword)
       return setValidate(true);
     const form = new FormData();
@@ -31,12 +31,12 @@ const Signup = (props) => {
     form.append("Email", Email);
     form.append("passWord", Password);
     form.append("confirmPassword", confirmPassword);
-     if(file){
-      form.append('profile',file);
-    } 
-   dispatch(SignupAction(form));
+    if (file) {
+      form.append("profile", file);
+    }
+    dispatch(SignupAction(form));
   }
-  
+
   if (auth.autenticate) setShow(false);
   if (show === false) return <Navigate to="/" />;
   return (
@@ -47,7 +47,7 @@ const Signup = (props) => {
             X
           </button>
           <h3 className="center">SignUp</h3>
-          <Form noValidate validated={isValidate}>
+          <Form onSubmit={handleSubmit} noValidate validated={isValidate}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -74,7 +74,7 @@ const Signup = (props) => {
                 Email is required
               </Form.Control.Feedback>
               <h3 style={{ color: "red" }}>
-                {auth.error && auth.message?auth.message : null}
+                {auth.error && auth.message ? auth.message : null}
               </h3>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -89,7 +89,6 @@ const Signup = (props) => {
               <Form.Control.Feedback type="invalid">
                 Valid password required
               </Form.Control.Feedback>
-              
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Confirm Password</Form.Label>
@@ -107,7 +106,7 @@ const Signup = (props) => {
                 <Form.Label>Profile Picture</Form.Label>
                 <Form.Control
                   name="profile"
-                  onChange={(e) =>setFile( e.target.files[0])}
+                  onChange={(e) => setFile(e.target.files[0])}
                   type="file"
                 />
               </Form.Group>
@@ -123,9 +122,22 @@ const Signup = (props) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button onClick={handleSubmit} variant="primary">
-                SignUp
-              </Button>
+              {auth.loading ? (
+                <Button variant="primary">
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  loading
+                </Button>
+              ) : (
+                <Button type="submit" variant="primary">
+                  SignUp
+                </Button>
+              )}
             </div>
             <div>
               <Link to="/login">

@@ -3,7 +3,7 @@ import "./index.css";
 import img from "../../img/hotel-icon.png";
 import userpic from "../../img/user.png";
 
-import { Container, Navbar, Spinner } from "react-bootstrap";
+import { Container, Navbar} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LoginAction from "../../action/loginAction";
@@ -11,21 +11,14 @@ import { generatePublicUrl } from "../../urlconfig";
 
 const Header = (props) => {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(LoginAction());
-  }, []);
-  const auth = useSelector((state) => state.auth);
+  }, [auth.authenticate]);
+  
   const { Name, Profile } = auth.user;
 
-  return auth.loading ? (
-    <Container>
-      <Spinner animation="grow" size='lg'/>
-      <Spinner animation="grow" size='lg'/>
-      <Spinner animation="grow" size='lg'/>
-    </Container>
-  ) : auth.error ? (
-    "error"
-  ) : (
+  return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>

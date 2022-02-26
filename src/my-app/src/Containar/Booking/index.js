@@ -47,9 +47,15 @@ const Booking = (props) => {
     )
   ) : (
     <Container>
-      <Spinner animation="grow" size="lg" />
-      <Spinner animation="grow" size="lg" />
-      <Spinner animation="grow" size="lg" />
+      <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+    <Spinner animation="border" role="status">
+     <span className="visually-hidden">Loading...</span>
+    </Spinner>
+    <Spinner animation="border" role="status">
+  <span className="visually-hidden">Loading...</span>
+</Spinner>
     </Container>
   );
 };

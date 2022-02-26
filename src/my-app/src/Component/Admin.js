@@ -7,12 +7,17 @@ const Admin = () => {
   useEffect(() => {
   },[auth.loading]);
 
-  return auth?.loading ? (
+ /*  return auth?.loading ? (
     "Loading"
   ) : auth.authenticate && auth.user.role === "admin" ? (
     <Outlet />
   ) : (
     <Navigate to="/" />
-  );
+  ); */
+  return  auth.authenticate && auth.user.role === "admin" ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/" />
+  )
 };
 export default Admin;

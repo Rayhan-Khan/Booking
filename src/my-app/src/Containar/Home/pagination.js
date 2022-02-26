@@ -14,9 +14,9 @@ for (let number = 1; number <= page; number++) {
     </Pagination.Item>,
   );
 }
-return <div style={{ display: "flex", margin:'10px 50% 5px 50%'}}>
+return room?.count>19?<div style={{ display: "flex", margin:'10px 50% 5px 50%'}}>
     <Pagination>{items}</Pagination>
-</div>
+</div>:null;
 
  
 }

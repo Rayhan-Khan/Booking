@@ -46,28 +46,33 @@ const Home = () => {
 
   function selectOption(value) {
     setSkip(0);
-    if (value === "Restaurant") setRestaurant(!obj[value]);
-    else if (value === "Breakfast") setBreakfast(!obj[value]);
-    else if (value === "min to max price") {
+    if (value === "Restaurant") {
+      setRestaurant(!restaurant);
+      return;
+    } else if (value === "Breakfast") {
+      setBreakfast(!breakfast);
+      return;
+    } else if (value === "min to max price") {
       setMinPrice(!minPrice);
       setMaxPriceMaxOffer(false);
       setMaxPrice(false);
       return;
     } else if (value === "max to min price") {
-      setMaxPrice(!obj[value]);
+      setMaxPrice(!maxPrice);
       setMinPrice(false);
       setMaxMinPrice(false);
 
       return;
     } else if (value === "max offer") {
-      setMaxOfeer(!obj[value]);
+      setMaxOfeer(!maxOffer);
+      return;
     } else if (value === "max offer low price") {
       setMaxMinPrice(!maxMinPrice);
       setMaxPriceMaxOffer(false);
       setMaxPrice(false);
       return;
     } else if (value === "max offer max price")
-      setMaxPriceMaxOffer(!obj[value]);
+      setMaxPriceMaxOffer(!maxPriceOffer);
     setMaxMinPrice(false);
     setMinPrice(false);
     return;
@@ -120,13 +125,7 @@ const Home = () => {
     restaurant,
     maxPrice,
   ]);
-  return room.loading ? (
-    <Container>
-      <Spinner animation="grow" size="lg" />
-      <Spinner animation="grow" size="lg" />
-      <Spinner animation="grow" size="lg" />
-    </Container>
-  ) : (
+  return (
     <div>
       <Container fluid>
         <Row xs={12} md={12}>
@@ -148,18 +147,31 @@ const Home = () => {
           </Col>
 
           <Col xs={12} md={10}>
-            {room.count > 0 && (
-              <h1 style={{ color: "#cccccc" }}>
-                Total {room.count} Room found
-              </h1>
-            )}
-            {room.count === 0 && (
-              <h3 style={{ color: "#cccccc" }}>Sorry...,No room found...</h3>
-            )}
+            <div style={{fontSize:'40px'}}>{
+              room.loading ? (
+                <Container>
+
+                <Spinner animation="grow" variant="success" />
+                <Spinner animation="grow" variant="info" />
+                <Spinner animation="grow" variant="primary" />
+
+                </Container>
+              ) :room.count > 0 ? (
+                <div style={{ color: "#cccccc" }}>
+                  Total : {room.count} Room found
+                </div>
+              ):
+              <div style={{ color: "#cccccc" }}>
+                  Sorry...,No room(s) found at these condition
+                </div>
+
+            }</div>
             <Slider
-              type="Browse by property type"
+              type={type ? "Type : " + type : "Browse by property type"}
               show="property"
-              Location="Browse By Location"
+              Location={
+                location ? "Location : " + location : "Browse By Location"
+              }
               propertyType={propertyType}
               Check={type}
               CheckL={location}
@@ -168,7 +180,7 @@ const Home = () => {
             <h1>Room</h1>
             {!room.count && (
               <h1 style={{ color: "green" }}>
-                No room found all this condition
+                No room(s) found at these condition
               </h1>
             )}
             <Row xs={1} md={3} xl={4} className="g-1">

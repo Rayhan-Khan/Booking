@@ -1,12 +1,11 @@
 //import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 import "./index.css";
 import login from "../../img/login.jpg";
 import LoginAction from "../../action/loginAction";
-import Home from "../Home";
 
 const LoginForm = (props) => {
   const dispatch = useDispatch();
@@ -23,9 +22,10 @@ const LoginForm = (props) => {
     auth.error = null;
     setShow(true);
   }, []);
-  function handleSubmit() {
+  async function handleSubmit(event) {
+    event.preventDefault();
     if (!Email || !Password) return setValidate(true);
-    dispatch(LoginAction({ Email, passWord: Password }));
+    await dispatch(LoginAction({ Email, passWord: Password }));
     if (auth.authenticate) setShow(false);
   }
   if (show === false) return <Navigate to="/" />;
@@ -40,8 +40,8 @@ const LoginForm = (props) => {
           <div className="img-containar">
             <img className="login center" src={login} alt="login" />
           </div>
-          <Form noValidate validated={isValidate}>
-            <Form.Group className="mb-3" controlId="formBasicEmail"> 
+          <Form onSubmit={handleSubmit} noValidate validated={isValidate}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
@@ -81,10 +81,22 @@ const LoginForm = (props) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button onClick={handleSubmit} variant="primary">
-                Login
-              </Button>
-              <Link to="forgetpassword">Forget Password??</Link>
+              {auth.loading ? (
+                <Button variant="primary">
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  loading
+                </Button>
+              ) : (
+                <Button type="submit" variant="primary">
+                  Login
+                </Button>
+              )}
             </div>
             <div>
               <Link to="/signup">

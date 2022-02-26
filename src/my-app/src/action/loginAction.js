@@ -4,11 +4,13 @@ import axios from "../helper/axios";
 const LoginAction = (form) => async (dispatch) => {
   try {
     let res;
-    dispatch({ type: AUTH_REQUEST });
+    
     //cookie checking
     if (form === undefined) res = await axios.post("/userExist", {AUTH_REQUEST});
     //login request
-    else res = await axios.post("/login", form);
+    else{ 
+      dispatch({ type: AUTH_REQUEST });
+      res = await axios.post("/login", form);}
     if (res.status === 200)
       return dispatch({
         type: AUTH_SUCCECSS,

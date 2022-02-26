@@ -56,7 +56,12 @@ const Sliderfun = (props) => {
       <h1>{props.type}</h1>
       <Slider {...settings}>
         {type.type.map((it, id) => (
-          <div className="card-style" key={id}>
+          <div 
+          onClick={() => props.propertyType(it._id, "type")}
+          className={
+            it._id === props.Check ? "card-styleSylect" : "card-style"
+          }
+           key={id}>
             <Card
               className="rounded-4"
               /* onClick={() => props.propertyType(it._id)} */
@@ -76,17 +81,6 @@ const Sliderfun = (props) => {
                 <br />
                 Price Range : {it.minPrice}-{it.maxPrice}
                 <br />
-                <Form>
-                  <Form.Check
-                    type="switch"
-                    id="custom-switch"
-                   
-                  checked={it._id===props.Check}
-                 /*  onChange={() => props.propertyType(it._id)}
-                    checked={check} */
-                    onChange={() => props.propertyType(it._id,'type')}
-                  />
-                </Form>
               </Card.Body>
             </Card>
           </div>
@@ -96,7 +90,12 @@ const Sliderfun = (props) => {
       <h1>{props.Location}</h1>
       <Slider {...settings}>
         {type.location.map((it, id) => (
-          <div className="card-style" key={id}>
+          <div 
+          onClick={() => props.propertyType(it._id, "location")}
+            className={
+              it._id === props.CheckL ? "card-styleSylect" : "card-style"
+            }
+           key={id}>
             
             <Card className="rounded-4">
             <Card.Img
@@ -113,16 +112,7 @@ const Sliderfun = (props) => {
                 Total : {it.count} {it._id}
                 <br />
                 Price Range : {it.minPrice}-{it.maxPrice}
-                <Form>
-                  <Form.Check
-                    type="switch"
-                    id="custom-switch"
-                  checked={it._id===props.CheckL}
-                 /*  onChange={() => props.propertyType(it._id)}
-                    checked={check} */
-                    onChange={() => props.propertyType(it._id,'location')}
-                  />
-                </Form>
+
               </Card.Body>
             </Card>
           </div>

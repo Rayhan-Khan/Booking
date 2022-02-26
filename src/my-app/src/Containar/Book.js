@@ -29,7 +29,7 @@ const BookingNow = (props) => {
   const [show, setShow] = useState(true);
   const [count,setCount]=useState(1);
   const { id } = useParams();
-  const range=endDate.getDate()-startDate.getDate();
+  const range=(endDate.getTime()-startDate.getTime())/ (1000 * 3600 * 24);
   const Details = useLocation();
   const [userData, setUserData] = useState(Details.state || undefined);
   const [error, setError] = useState(null);
@@ -50,16 +50,13 @@ const BookingNow = (props) => {
       }
     }
     if (userData === undefined) fatchdata();
-
-
-
   },[]);
 
    useEffect(() => {
       setstartDate(startDate.getFullYear()+'-'+(startDate.getMonth()+1)+'-'+(startDate.getDate()+1));
        setendDate(endDate.getFullYear()+'-'+(endDate.getMonth()+1)+'-'+(endDate.getDate()+1));
        async function count(){
-        if(startDate.getDate()<endDate.getDate()){
+        if(range>0){
           setStartError(false)
           // setCount(await axios.post(`/bookingcount/${userData._id}`,{StartDate:sDate,EndDate:eDate}))
          const data= await axios.post(`/bookingcount/${userData._id}`,{StartDate,EndDate})
@@ -79,6 +76,15 @@ const BookingNow = (props) => {
   };
  async function handleSubmit(e) {
     e.preventDefault();
+    if(range<=0)
+       {
+         alert('Please Enter Valid End And Start Date');
+         return;
+       }
+   if(quantity<=0){
+    alert('Quantity Minimum 1');
+    return;
+   }    
     const res =await axios.post(`/booking/${userData._id}`,{
       StartDate,
       EndDate,
