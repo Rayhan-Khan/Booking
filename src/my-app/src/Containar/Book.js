@@ -134,11 +134,11 @@ const BookingNow = (props) => {
                   onChange={(e)=>setQuantity(e.target.value)}
                 />
                 <br/>
-                <label>Total Price : {(range*quantity)*userData.calculatePrice}</label>
+                <label>Total Price : {range>0&&(range*quantity)*userData.calculatePrice}</label>
                 <br/>
-                <label>Save Price :{(range*quantity)*userData.Price-(range*quantity)*userData.calculatePrice}</label>
+                <label>Save Price :{range>0&&(range*quantity)*userData.Price-(range*quantity)*userData.calculatePrice}</label>
                 <br/>
-                <label>Available  Room: {userData.Room-count-quantity}</label>
+                <label>Available  Room: {range>0&&userData.Room-count-quantity}</label>
                 <input type="submit" value="Submit" />
               </Form>
             </Modal.Body>

@@ -150,7 +150,6 @@ const Home = () => {
             <div style={{fontSize:'40px'}}>{
               room.loading ? (
                 <Container>
-
                 <Spinner animation="grow" variant="success" />
                 <Spinner animation="grow" variant="info" />
                 <Spinner animation="grow" variant="primary" />
