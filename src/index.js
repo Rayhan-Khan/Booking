@@ -1,5 +1,5 @@
 require("dotenv").config();
-const cors = require("cors");
+/* const cors = require("cors"); */
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
@@ -15,10 +15,13 @@ const createRoom = require("./router/Room");
 const booking = require("./router/booking");
 
 
-app.use("/public", express.static(__dirname, +"/uploads"));
-app.use(
+
+app.use('/public', express.static(path.join(__dirname,'uploads')))
+/* 
+app.use("/public", express.static(__dirname, +"/uploads")); */
+/* app.use(
   cors({ credentials: true, origin: "http://localhost:3000" })
-);
+); */
  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -44,7 +47,13 @@ mongoose
   .catch((err) => console.log(err));
 
 
-if (process.env.NODE_ENV === "production") {
+
+  app.use(express.static(path.join(__dirname, "my-app","build")));
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'my-app','build', 'index.html'));
+  });
+
+/* if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "./my-app/build")));
   app.get("*", function (_, res) {
     res.sendFile(
@@ -56,8 +65,7 @@ if (process.env.NODE_ENV === "production") {
       }
     );
   });
-} 
-
+}  */
 
 const Port = process.env.PORT || 2000;
 
