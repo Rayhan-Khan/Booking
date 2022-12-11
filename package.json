@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src/my-app && npm run build --prefix src/my-app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"src/my-app"
   },
   "author": "Rayhan",
   "license": "ISC",
