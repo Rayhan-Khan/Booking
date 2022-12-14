@@ -45,9 +45,6 @@ mongoose
   })
   .then(() => console.log("Database Connectted"))
   .catch((err) => console.log(err));
-
-
-
   app.use(express.static(path.join(__dirname, "my-app","build")));
   app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'my-app','build', 'index.html'));
