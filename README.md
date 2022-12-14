@@ -1,2 +1,2 @@
-# Booking
-Heroku Link:  https://bookingnow.herokuapp.com/
+# Booking  
+https://booking.cyclic.app/
