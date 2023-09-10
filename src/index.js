@@ -28,9 +28,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cookie());
 
-app.use("/admin", admin);
+//app.use("/admin", admin);
 app.use('/api',isUserexist);
-admin.use('/api',createRoom);
+//admin.use('/api',createRoom);
 app.use('/api',createRoom);
 app.use('/api',auth);
 app.use('/api',booking);
