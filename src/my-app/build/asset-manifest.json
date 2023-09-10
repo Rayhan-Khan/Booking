@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ce2e1293.css",
-    "main.js": "/static/js/main.3b09f172.js",
+    "main.js": "/static/js/main.29878fb5.js",
     "static/js/787.cfd8f164.chunk.js": "/static/js/787.cfd8f164.chunk.js",
     "static/media/login.jpg": "/static/media/login.845079e0ead6b5067c2e.jpg",
     "static/media/saedx-blog-featured-70.jpg": "/static/media/saedx-blog-featured-70.2fe0a4bbd29fd1e42d90.jpg",
@@ -11,11 +11,11 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.ce2e1293.css.map": "/static/css/main.ce2e1293.css.map",
-    "main.3b09f172.js.map": "/static/js/main.3b09f172.js.map",
+    "main.29878fb5.js.map": "/static/js/main.29878fb5.js.map",
     "787.cfd8f164.chunk.js.map": "/static/js/787.cfd8f164.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ce2e1293.css",
-    "static/js/main.3b09f172.js"
+    "static/js/main.29878fb5.js"
   ]
 }

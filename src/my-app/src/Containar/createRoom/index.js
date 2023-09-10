@@ -52,7 +52,7 @@ const CreateRoom = (props) => {
       }
      const error=null;
     try{
-      const res=await axios.post('createroom',form);
+      const res=await axios.post('/createroom',form);
       if(res.status===201){
          setShow(false)
         }
