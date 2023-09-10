@@ -11,7 +11,7 @@ const auth = require("./router/auth");
 const isUserexist = require("./router/isLoggedin");
 const errorHandaler = require("./controller/Error");
 const NotFound = require("./controller/NotFound");
-const createRoom = require("./router/Room");
+const createroom = require("./router/Room");
 const booking = require("./router/booking");
 
 
@@ -31,7 +31,7 @@ app.use(cookie());
 //app.use("/admin", admin);
 app.use('/api',isUserexist);
 //admin.use('/api',createRoom);
-app.use('/api',createRoom);
+app.use('/api',createroom);
 app.use('/api',auth);
 app.use('/api',booking);
 app.use('/api',NotFound);
